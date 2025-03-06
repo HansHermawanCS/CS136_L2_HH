@@ -16,6 +16,12 @@ void switchStatement(int numOfTerms);
 bool validateAmountInput(string input);
 int validateSwitchInput(string input);
 
+enum MenuOptions {
+  ADDQUOTIENTSERIES = 1,
+  ADDPRODUCTSERIES = 2,
+  EXITPROGRAM = 3
+};
+
 int main(){
   int userInput = askUserForAmount();
 
@@ -35,17 +41,15 @@ void switchStatement(int numOfTerms){
     cout << "\n";
 
     switch(userInput){
-      case (1):
+      case (ADDQUOTIENTSERIES):
         addQuotientSeries(numOfTerms, 1, 0);
-        printMenuChoices();
         break;
 
-      case (2):
+      case (ADDPRODUCTSERIES):
         addProductSeries(numOfTerms, 0);
-        printMenuChoices();
         break;
 
-      case (3):
+      case (EXITPROGRAM):
         exitProgram();
         break;
 
@@ -95,6 +99,8 @@ void addQuotientSeries(int n, int currentIndex, double product){
   if(currentIndex == n + 1){
     cout << "= " + to_string(product) + "\n";
 
+    printMenuChoices();
+
   } else{
     const int subtractedIndex = currentIndex - 1;
     double newProduct = (1.0 / ((subtractedIndex) + currentIndex)) + product;
@@ -114,6 +120,8 @@ void addQuotientSeries(int n, int currentIndex, double product){
 void addProductSeries(int n, int product){
   if(n == 0){
     cout << "= " + to_string(product) + "\n";
+
+    printMenuChoices();
 
   } else{
     int newProduct = (n * n) + product;
